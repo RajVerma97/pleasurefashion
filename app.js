@@ -7,6 +7,7 @@ tagRoutes = require('./api/routes/tags');
 commentRoutes = require('./api/routes/comments');
 cartRoutes = require('./api/routes/cart');
 wishlistRoutes = require('./api/routes/wishlist');
+paperWorkRoutes = require('./api/routes/paperwork');
 mongoose = require('mongoose');
 bodyParser = require('body-parser');
 methodOverride = require('method-override');
@@ -22,7 +23,6 @@ Razorpay = require('razorpay');
 
 const User = require('./api/models/users');
 const passport = require('passport');
-// const checkUserLoggedIn = require('./api/middlewares/checkUserLoggedIn');
 const localStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const checkCart = require('./api/middlewares/check-cart');
@@ -30,7 +30,6 @@ const checkCart = require('./api/middlewares/check-cart');
 
 
 var seeds = require('./seeds');
-const wishlist = require('./api/models/wishlist');
 
 
 // seeds();
@@ -148,7 +147,7 @@ app.get('/', (req, res) => {
     res.render('users/signup');
 });
 
-app.get('/index', (req, res) => {
+app.get('/index',checkUserLoggedIn, (req, res) => {
     res.render('index');
 });
 
@@ -169,7 +168,7 @@ app.get('/profile', checkUserLoggedIn, (req, res) => {
 
 
 
-app.get('/auth / google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
     function (req, res) {
@@ -190,27 +189,11 @@ app.use('/products', productRoutes);
 app.use('/cart', checkUserLoggedIn, checkCart, cartRoutes);
 app.use('/orders', checkUserLoggedIn, orderRoutes);
 app.use('/wishlist', checkUserLoggedIn, wishlistRoutes);
-
 app.use('/search', searchRoutes);
 app.use('/tags', tagRoutes);
 app.use('/comments', checkUserLoggedIn, commentRoutes);
+app.use('/paperwork', paperWorkRoutes);
 
-
-app.get('/paperwork/aboutUs', (req, res, next) => {
-    res.render('paperwork/aboutUs');
-});
-app.get('/paperwork/pricing', (req, res, next) => {
-    res.render('paperwork/pricing');
-});
-app.get('/paperwork/privacy', (req, res, next) => {
-    res.render('paperwork/privacy');
-});
-app.get('/paperwork/refundsAndCancellations', (req, res, next) => {
-    res.render('paperwork/refundsAndCancellations');
-});
-app.get('/paperwork/termsAndConditions', (req, res, next) => {
-    res.render('paperwork/termsAndConditions');
-});
 
 
 app.get("/order", (req, res) => {
@@ -326,8 +309,6 @@ app.get('*', (req, res) => {
         message: "Page not found"
     })
 });
-
-// wYumMAdD0xa1p8JU
 
 
 

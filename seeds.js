@@ -3,7 +3,6 @@ const Product = require('./api/models/product');
 const Comment = require('./api/models/comments');
 const User = require('./api/models/users');
 const Cart = require('./api/models/cart');
-const Wishlist = require('./api/models/wishlist');
 const Order = require('./api/models/orders');
 
 

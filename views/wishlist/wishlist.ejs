@@ -30,12 +30,10 @@
                                     <span class="order__price">₹<%=product.price%></span>
 
                                 </div>
-                            <form action="/wishlist/<%=product._id%>?_method=DELETE" method="POST">
-                                <button class="order__delete__btn">Delete</button>
+                                <button product-id='<%=product._id%>' class='delete__btn order__delete__btn'>Delete</button>
                             
-                            </form>
 
-                    
+                
                             </div>
 
 
@@ -59,6 +57,8 @@
 
 
     </div>
-    <script src="/scripts/cart.js"></script>
+  
+  
 
     <%-include('../partials/footer')%>
+    <script src="/scripts/cart.js"></script>
