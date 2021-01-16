@@ -1,0 +1,65 @@
+<%-include('../partials/header')%>
+    <link rel="stylesheet" href="/stylesheets/cart/cart.css">
+
+
+    <div class="order__wrapper">
+        <%-include('../partials/backArrow')%>
+
+
+            <h1 class="cart__title">My orders</h1>
+
+
+            <div class="orders">
+
+                <%if(orders.length>0){%>
+                    <%orders.forEach(function(order){%>
+
+                        <div class="order"  data-aos="fade-up"  data-aos-once="true" data-aos-delay="200"
+                            data-aos-duration="400">
+
+                        <a href="/products/<%=order.product._id%>">
+                            <img class="order__image" src="<%=order.product.image%>">
+                        </a>
+                            <div class="order__info">
+                                <h4 class="order__name">
+                                    <%=order.product.name%>
+
+                                </h4>
+                                <span class="order__size">
+                                    <%=order.size%>
+                                </span>
+                                <div class="order__footer">
+                                    <span class="order__price">₹<%=order.product.price%></span>
+                                    <span class="order__quantity">
+                                        <%=order.quantity%>x
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+                        <%})%>
+
+                            <%}else{%>
+                                <div class="not__found">
+                                    <h4 class="not__found__text">no orders</h4>
+                                    <div class="not__found__img"></div>
+                                
+                                
+                                </div>
+
+                                <%}%>
+
+
+            </div>
+
+
+    </div>
+
+    <script src="/scripts/cart.js"></script>
+
+    <%-include('../partials/footer')%>

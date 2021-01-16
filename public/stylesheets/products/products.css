@@ -1,0 +1,92 @@
+.heart__icon {
+	margin-top: 1em;
+	font-size: 1.2rem;
+	color: gray;
+	cursor: pointer;
+}
+.heart__icon.added {
+	color: hotpink;
+}
+.not__found {
+	text-align: center;
+	padding: 1em 2em 0;
+	margin: 2em auto;
+	width: 90%;
+	height: 50vh;
+}
+.not__found__text {
+	font-size: 1.9rem;
+	color: grey;
+	font-weight: 700;
+	margin-bottom: 2em;
+	text-transform: capitalize;
+}
+.not__found__img {
+	height: 90%;
+	width: 100%;
+	background-image: url("/images/products_not_found.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: top;
+}
+
+.wrapper {
+	padding: 1em;
+}
+.products {
+	margin-top: 1em;
+	padding: 1em;
+}
+.products__container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 1.3em;
+}
+.products {
+	padding: 1em;
+}
+
+.product {
+	position: relative;
+}
+.product__image {
+	width: 188px;
+	height: 250px;
+	display: block;
+	border-radius: 8px;
+}
+
+.product__footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.product__info {
+	margin-top: 1em;
+}
+
+.product__name {
+	font-size: 1rem;
+	font-weight: 300;
+	margin-bottom: 0.5em;
+	text-transform: capitalize;
+}
+
+.product__price {
+	font-size: 1.3rem;
+	font-weight: 500;
+	color: black;
+}
+
+.wishlist {
+	position: absolute;
+	top: 9px;
+	right: 8px;
+}
+
+.wishlist button {
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	color: grey;
+}

@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="/stylesheets/products/products.css">
+<%-include('../partials/header')%>
+
+<%-include('../partials/searchForm')%>
+
+
+   <%if(products.length<1){%>
+      <div class="not__found">
+      <h4 class="not__found__text">no result found!!</h4>
+      <div class="not__found__img"></div>
+
+
+      </div>
+
+      <%} else{%>
+         <section class="products">
+            <%-include('../partials/backArrow')%>
+
+
+            <div class="products__container">
+
+               <%products.forEach(function(product){%>
+
+
+                  <span  class="product">
+
+                     <div class="image__container">
+                       <a href="/products/<%=product._id%>">
+                     <img src="<%=product.image%>" alt="" class="product__image" data-aos="fade-up" data-aos-delay="100" data-aos-once="true" data-aos-duration="500">
+                  </a>
+
+                     </div>
+
+                     <div class="product__footer">
+                           <div class="product__info">
+                              <h1 class="product__name">
+                                 <%=product.name%>
+                              </h1>
+                           
+                           
+                              <span class="product__price">₹<%=product.price%></span>
+                           
+                           </div>
+
+                           <div class="heart">
+                              <%if(currentUser){%>
+                                 <%if(product.wishlist.includes(currentUser._id)){%>
+                                    <i product_id='<%=product._id%>' class="added heart__icon fas fa-heart"></i>
+                                 
+                                    <%}else{%>
+                                       <i product_id='<%=product._id%>' class="heart__icon fas fa-heart"></i>
+                                 
+                                 
+                                       <%}%>
+
+                             <%}%>
+                                  
+                           </div>
+                     </div>
+                    
+
+                  </span>
+
+
+                  <%});%>
+            </div>
+
+         </section>
+
+         <%}%>
+   <script src="/scripts/products.js"></script>
+
+
+            <%-include('../partials/footer')%>

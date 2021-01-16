@@ -1,0 +1,160 @@
+.header {
+	width: 100%;
+	background-color: #6c63ff;
+	display: flex;
+	align-items: center;
+	padding: 0 1em;
+	height: 8vh;
+	color: var(--header-clr);
+	font-size: 1.6rem;
+}
+.overlay-active {
+	display: block;
+}
+.overlay {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100%;
+	background-color: rgba(100, 96, 96, 0.5);
+	z-index: 1;
+	opacity: 1;
+}
+
+.brand__logo {
+	font-size: 1.6rem;
+	font-weight: 600;
+	text-transform: capitalize;
+	color: var(--brand-logo-clr);
+	margin-left: 1em;
+	margin-right: auto;
+}
+
+.cart {
+	font-size: 1.5rem;
+}
+.cart,
+.toogle {
+	color: white;
+}
+
+.toogle:hover,
+.sidebar__close:hover {
+	cursor: pointer;
+	transform: scale(1.3);
+}
+
+.sidebar {
+	display: none;
+	overflow-y: auto;
+	position: absolute;
+	width: 70vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: var(--sidebar-bg-clr);
+	color: var(--sidebar-clr);
+	padding: 2em 0.7em;
+	text-transform: capitalize;
+	z-index: 101;
+}
+
+.sidebar.active {
+	display: block;
+}
+.sidebar__close {
+	font-size: 2rem;
+}
+.close__container {
+	width: 100%;
+	height: 1.5em;
+	text-align: left;
+	margin-left: 40px;
+	color: black;
+}
+.close__container {
+	position: sticky;
+	top: 0;
+}
+.sidebar__profile {
+	text-align: center;
+	width: 50%;
+}
+.profile__image {
+	font-size: 7rem;
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+}
+.profile__username {
+	margin-top: 0.3em;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.sidebar__list {
+	list-style: none;
+	margin-top: 1em;
+}
+
+.sidebar__item {
+	margin-bottom: 1.5em;
+	position: relative;
+}
+
+.sidebar__item::after {
+	margin-top: 0.5em;
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	background-color: black;
+	height: 2px;
+}
+.sidebar__link {
+	font-size: 1.1rem;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	color: black;
+}
+.sidebar__link:hover,
+.sidebar__link:focus {
+	color: rgb(54, 71, 223);
+}
+.sidebar__link__icon {
+	float: right;
+	margin-top: 0.3em;
+}
+.submenu.submenu--active {
+	display: block;
+}
+.submenu {
+	display: none;
+	padding: 0.5em;
+	list-style: none;
+	overflow: auto;
+}
+.submenu__item {
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+
+.submenu__link:hover {
+	transform: scale(1.2);
+	color: rgb(236, 93, 93);
+}
+.submenu__link {
+	color: black;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.submenu.active {
+	display: block;
+}
+.submenu__toogler:hover {
+	cursor: pointer;
+}
