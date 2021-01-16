@@ -1,5 +1,3 @@
-
-module.exports = (req, res, next)=>{
-    res.user ? next() : res.sendStatus(401);
-}
-
+module.exports = (req, res, next) => {
+  res.user ? next() : res.sendStatus(401);
+};
