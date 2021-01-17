@@ -118,8 +118,8 @@ input[type=number]::-webkit-inner-spin-button {
 	margin-right: 1em;
 }
 .comment__image--main {
-	width: 4em;
-	height: 4em;
+	width: 3em;
+	height: 3em;
 }
 
 .comment__input {

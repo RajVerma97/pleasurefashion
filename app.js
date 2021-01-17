@@ -26,9 +26,6 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const checkCart = require('./api/middlewares/check-cart');
-
-
-
 var seeds = require('./seeds');
 
 
@@ -136,16 +133,26 @@ app.use((req, res, next) => {
 
 });
 
+// app.use(function (req, res, next) {
+//     if (req.session.user == null) {
+//         // if user is not logged-in redirect back to login page //
+//         res.redirect('/');
+//     } else {
+//         next();
+//     }
+// });
 
-// Middleware - Check user is Logged in
-const checkUserLoggedIn = (req, res, next) => {
-    req.user ? next() : res.sendStatus(401);
-}
+
 
 //routes which handle requests
 app.get('/', (req, res) => {
     res.render('users/signup');
 });
+
+// Middleware - Check user is Logged in
+const checkUserLoggedIn = (req, res, next) => {
+    req.user ? next() : res.redirect('/');
+}
 
 app.get('/index',checkUserLoggedIn, (req, res) => {
     res.render('index');

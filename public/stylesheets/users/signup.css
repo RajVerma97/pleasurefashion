@@ -1,5 +1,10 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 body {
-	font-family: 'Open Sans', sans-serif;
+	width:100vw;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
@@ -101,13 +106,13 @@ body {
 	.left {
 		padding: 2em;
 		order: 2;
-		height: 30%;
+		height: 40%;
 		width: 100%;
 	}
 
 	.right {
 		order: 1;
-		height: 70%;
+		height: 60%;
 		width: 100%;
 	}
 

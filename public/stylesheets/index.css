@@ -89,7 +89,7 @@ main {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(120px, 2fr));
 	grid-auto-rows: 260px;
-	grid-gap: 2em;
+	grid-gap: 1.5em;
 }
 .category__link {
 	padding: 1em;
@@ -97,7 +97,7 @@ main {
 .category__image {
 	border-radius: 8px;
 	width: 100%;
-	height: 80%;
+	height: 90%;
 	display: block;
 }
 .category__title {
@@ -109,7 +109,7 @@ main {
 }
 .brands__carousel {
 	margin-top: 2em;
-	margin-bottom: 1em;
+	margin-bottom: 2em;
 }
 
 .brand__cell {
@@ -144,60 +144,14 @@ main {
 .showoff {
 	width: 100%;
 	max-width: 90vw;
-	height: 100vh;
-	position: relative;
 }
 .showoff__image {
 	display: block;
 	width: 100%;
-	height: 100%;
+	height: 63vh;
 	border-radius: 8px;
 	background-position: top;
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-.showoff__text {
-	position: absolute;
-}
-.showoff__text-1 {
-	font-size: 1.5rem;
-	transform: rotate(72deg);
-	color: white;
-	font-style: italic;
-	top: 440px;
-	left: 230px;
-	width: 8em;
-}
-.showoff__text-2 {
-	font-size: 1.7rem;
-	text-decoration: underline;
-	transform: rotate(-90deg);
-	color: #3f72af;
-	letter-spacing: 10px;
-	top: 200px;
-	left: 55px;
-	width: 20em;
-}
-
-.showoff__text-3 {
-	font-size: 1.7rem;
-	color: #ffff00;
-	width: 4em;
-	top: 400px;
-	left: 10px;
-}
-.showoff__text-4 {
-	font-size: 2.3rem;
-	font-weight: 700;
-	width: 4em;
-	color: white;
-	top: 530px;
-	left: 110px;
-}
-.showoff__text-5 {
-	font-size: 1.7rem;
-	color: white;
-	width: 8em;
-	top: 660px;
-	left: 210px;
+	padding: 2em;
 }
