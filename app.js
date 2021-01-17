@@ -1,44 +1,38 @@
 const port = process.env.PORT || 3000;
-const express = require('express');
-orderRoutes = require('./api/routes/orders');
-productRoutes = require('./api/routes/products');
-searchRoutes = require('./api/routes/search');
-tagRoutes = require('./api/routes/tags');
-commentRoutes = require('./api/routes/comments');
-cartRoutes = require('./api/routes/cart');
-wishlistRoutes = require('./api/routes/wishlist');
-paperWorkRoutes = require('./api/routes/paperwork');
-mongoose = require('mongoose');
-bodyParser = require('body-parser');
-methodOverride = require('method-override');
-flash = require('connect-flash');
-session = require('express-session');
-seedDb = require('./seeds');
-morgan = require('morgan');
-axios = require('axios');
-dotenv = require('dotenv').config();
-nodemailer = require('nodemailer');
-Cart = require('./api/models/cart');
-Razorpay = require('razorpay');
+const express = require("express");
+orderRoutes = require("./api/routes/orders");
+productRoutes = require("./api/routes/products");
+searchRoutes = require("./api/routes/search");
+tagRoutes = require("./api/routes/tags");
+commentRoutes = require("./api/routes/comments");
+cartRoutes = require("./api/routes/cart");
+wishlistRoutes = require("./api/routes/wishlist");
+paperWorkRoutes = require("./api/routes/paperwork");
+mongoose = require("mongoose");
+bodyParser = require("body-parser");
+methodOverride = require("method-override");
+flash = require("connect-flash");
+session = require("express-session");
+seedDb = require("./seeds");
+morgan = require("morgan");
+axios = require("axios");
+dotenv = require("dotenv").config();
+nodemailer = require("nodemailer");
+Cart = require("./api/models/cart");
+Razorpay = require("razorpay");
 
-const User = require('./api/models/users');
-const passport = require('passport');
-const localStrategy = require('passport-local');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const checkCart = require('./api/middlewares/check-cart');
+const User = require("./api/models/users");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const checkCart = require("./api/middlewares/check-cart");
 
-
-
-var seeds = require('./seeds');
-
+var seeds = require("./seeds");
 
 // seeds();
 
 const app = express();
-app.set('view engine', 'ejs');
-
-
-
+app.set("view engine", "ejs");
 
 // ==============
 //MiddleWares
@@ -46,60 +40,56 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-
-app.use(methodOverride('_method'));
-app.use(morgan('dev'));
+app.use(methodOverride("_method"));
+app.use(morgan("dev"));
 
 // ==============
 //Passport Config
 // ==============
-passport.serializeUser(function (user, done) {
-    done(null, user);
+passport.serializeUser(function(user, done) {
+  done(null, user);
 });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
-}, async (accessToken, refreshToken, profile, cb) => {
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.CALLBACK_URL
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      var profileJson = profile._json;
 
-    var profileJson = profile._json;
-
-    const existingUser = await User.findOne({ googleID: profile.id });
-    if (existingUser) {
+      const existingUser = await User.findOne({ googleID: profile.id });
+      if (existingUser) {
         cb(null, existingUser);
-    }
-    else {
+      } else {
         var newUser = new User({
-            _id: new mongoose.Types.ObjectId(),
-            googleID: profile.id,
-            username: profileJson.name,
-            email: profileJson.email,
-            profileImage: profileJson.picture
-
+          _id: new mongoose.Types.ObjectId(),
+          googleID: profile.id,
+          username: profileJson.name,
+          email: profileJson.email,
+          profileImage: profileJson.picture
         });
         const savedUser = await newUser.save();
         cb(null, savedUser);
-
+      }
     }
-}
-
-
-));
+  )
+);
 
 app.use(
-    require("express-session")({
-
-        secret: "Raj loves his friends",
-        resave: false,
-        saveUninitialized: false,
-    })
+  require("express-session")({
+    secret: "Raj loves his friends",
+    resave: false,
+    saveUninitialized: false
+  })
 );
 app.use(flash());
 app.use(passport.initialize());
@@ -110,152 +100,141 @@ passport.deserializeUser(User.deserializeUser());
 passport.use(new localStrategy(User.authenticate()));
 passport.use(User.createStrategy());
 
-
-
-
-
 // razorpay key ids
 
-var RAZOR_PAY_KEY_ID = 'rzp_test_pG5ZsBewvcRAo8';
-var RAZOR_PAY_KEY_SECRET = 'sFWzimejIdANS7p60CfyobJ9';
-
-
+var RAZOR_PAY_KEY_ID = "rzp_test_pG5ZsBewvcRAo8";
+var RAZOR_PAY_KEY_SECRET = "sFWzimejIdANS7p60CfyobJ9";
 
 //razorpay instance
 const instance = new Razorpay({
-    key_id: RAZOR_PAY_KEY_ID,
-    key_secret: RAZOR_PAY_KEY_SECRET,
+  key_id: RAZOR_PAY_KEY_ID,
+  key_secret: RAZOR_PAY_KEY_SECRET
 });
 
 //local variables middleware
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next();
-
+  res.locals.currentUser = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
 });
-
 
 // Middleware - Check user is Logged in
 const checkUserLoggedIn = (req, res, next) => {
-    req.user ? next() : res.sendStatus(401);
-}
+  req.user ? next() : res.sendStatus(401);
+};
 
 //routes which handle requests
-app.get('/', (req, res) => {
-    res.render('users/signup');
+app.get("/", (req, res) => {
+  res.render("users/signup");
 });
 
-app.get('/index',checkUserLoggedIn, (req, res) => {
-    res.render('index');
+app.get("/index", checkUserLoggedIn, (req, res) => {
+  res.render("index");
 });
 
-app.get('/failed', (req, res) => {
-    res.send('<h1>Log in Failed :(</h1>')
+app.get("/failed", (req, res) => {
+  res.send("<h1>Log in Failed :(</h1>");
 });
-
-
 
 //Protected Route.
-app.get('/profile', checkUserLoggedIn, (req, res) => {
-    console.log("hello");
+app.get("/profile", checkUserLoggedIn, (req, res) => {
+  console.log("hello");
 
-    res.redirect('/index');
+  res.redirect("/index");
 });
 
 // Auth Routes
 
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
-    function (req, res) {
-    req.session.save(function(err){
-        res.redirect('/index');
-    
-    
-  });
- 
-    }
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/failed" }),
+  function(req, res) {
+    req.session.save(function(err) {
+      if (err) {
+        res.redirect("/index");
+      } else {
+        res.redirect("/profile");
+      }
+    });
+  }
 );
 
 //Logout
-app.get('/logout', (req, res) => {
-    req.session = null;
-    req.logout();
-    res.redirect('/');
+app.get("/logout", (req, res) => {
+  req.session = null;
+  req.logout();
+  res.redirect("/");
 });
 
-
-
-app.use('/products', productRoutes);
-app.use('/cart', checkUserLoggedIn, checkCart, cartRoutes);
-app.use('/orders', checkUserLoggedIn, orderRoutes);
-app.use('/wishlist', checkUserLoggedIn, wishlistRoutes);
-app.use('/search', searchRoutes);
-app.use('/tags', tagRoutes);
-app.use('/comments', checkUserLoggedIn, commentRoutes);
-app.use('/paperwork', paperWorkRoutes);
-
-
+app.use("/products", productRoutes);
+app.use("/cart", checkUserLoggedIn, checkCart, cartRoutes);
+app.use("/orders", checkUserLoggedIn, orderRoutes);
+app.use("/wishlist", checkUserLoggedIn, wishlistRoutes);
+app.use("/search", searchRoutes);
+app.use("/tags", tagRoutes);
+app.use("/comments", checkUserLoggedIn, commentRoutes);
+app.use("/paperwork", paperWorkRoutes);
 
 app.get("/order", (req, res) => {
-    try {
-        const options = {
-            amount: 2 * 100, // amount == Rs 10
-            currency: "INR",
-            receipt: "receipt#1",
-            payment_capture: 0,
-            // 1 for automatic capture // 0 for manual capture
-        };
-        instance.orders.create(options, async function (err, order) {
-            if (err) {
-                return res.status(500).json({
-                    message: "Something Went Wrong",
-                });
-            }
-            return res.status(200).json(order);
-        });
-    } catch (err) {
+  try {
+    const options = {
+      amount: 2 * 100, // amount == Rs 10
+      currency: "INR",
+      receipt: "receipt#1",
+      payment_capture: 0
+      // 1 for automatic capture // 0 for manual capture
+    };
+    instance.orders.create(options, async function(err, order) {
+      if (err) {
         return res.status(500).json({
-            message: "Something Went Wrong",
+          message: "Something Went Wrong"
         });
-    }
+      }
+      return res.status(200).json(order);
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Something Went Wrong"
+    });
+  }
 });
 
 app.post("/capture/:paymentId", (req, res) => {
-    try {
-        return request(
-            {
-                method: "POST",
-                url: `https://${RAZOR_PAY_KEY_ID}:${RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
-                form: {
-                    amount: 2 * 100, // amount == Rs 10 // Same As Order amount
-                    currency: "INR",
-                },
-            },
-            async function (err, response, body) {
-                if (err) {
-                    return res.status(500).json({
-                        message: "Something Went Wrong",
-                    });
-                }
-                console.log("Status:", response.statusCode);
-                console.log("Headers:", JSON.stringify(response.headers));
-                console.log("Response:", body);
-                return res.status(200).json(body);
-            });
-    } catch (err) {
-        return res.status(500).json({
-            message: "Something Went Wrong",
-        });
-    }
+  try {
+    return request(
+      {
+        method: "POST",
+        url: `https://${RAZOR_PAY_KEY_ID}:${RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
+        form: {
+          amount: 2 * 100, // amount == Rs 10 // Same As Order amount
+          currency: "INR"
+        }
+      },
+      async function(err, response, body) {
+        if (err) {
+          return res.status(500).json({
+            message: "Something Went Wrong"
+          });
+        }
+        console.log("Status:", response.statusCode);
+        console.log("Headers:", JSON.stringify(response.headers));
+        console.log("Response:", body);
+        return res.status(200).json(body);
+      }
+    );
+  } catch (err) {
+    return res.status(500).json({
+      message: "Something Went Wrong"
+    });
+  }
 });
 // app.post('/purchase', checkAuth, async (req, res, next) => {
-
-
 
 //     // console.log(req.body);
 
@@ -305,29 +284,25 @@ app.post("/capture/:paymentId", (req, res) => {
 //     //         console.log(err);
 //     //     })
 
-
 // });
 
 //404 page not found
-app.get('*', (req, res) => {
-    res.status(404).json({
-        message: "Page not found"
-    })
+app.get("*", (req, res) => {
+  res.status(404).json({
+    message: "Page not found"
+  });
 });
-
-
 
 // var dbUrl = process.env.DB_URL || 'mongodb://localhost/women-shop';
 
 //connecting to the mongo db database
-mongoose.connect(process.env.DB_URL,
-    { useUnifiedTopology: true },
-    { useNewUrlParser: true }
+mongoose.connect(
+  process.env.DB_URL,
+  { useUnifiedTopology: true },
+  { useNewUrlParser: true }
 );
-
-
 
 //to start listening for incoming requests
 app.listen(port, () => {
-    console.log("Pleasure Site Server has started on port " + port);
+  console.log("Pleasure Site Server has started on port " + port);
 });
