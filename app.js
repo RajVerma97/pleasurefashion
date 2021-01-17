@@ -172,7 +172,12 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
     function (req, res) {
-        res.redirect('/profile');
+    req.session.save(function(err){
+        res.redirect('/index');
+    
+    
+  });
+ 
     }
 );
 
