@@ -13,6 +13,7 @@ bodyParser = require('body-parser');
 methodOverride = require('method-override');
 flash = require('connect-flash');
 session = require('express-session');
+cookieParser=require('cookie-parser');
 seedDb = require('./seeds');
 morgan = require('morgan');
 axios = require('axios');
@@ -35,28 +36,32 @@ const app = express();
 app.set('view engine', 'ejs');
 
 
+app.use(express.static('public'));
+
+app.use(methodOverride('_method'));
+app.use(morgan('dev'));
+app.use(flash());
+
+
 
 
 // ==============
 //MiddleWares
 // ==============
-
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser('abcdefg'));
 app.use(bodyParser.json());
-app.use(express.static('public'));
-
-
-app.use(methodOverride('_method'));
-app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
-    require("express-session")({
+    session({
 
         secret: "Raj loves his friends",
-        resave: false,
+        resave: true,
         saveUninitialized: false,
     })
 );
-app.use(flash());
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
