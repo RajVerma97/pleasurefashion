@@ -21,6 +21,7 @@ dotenv = require('dotenv').config();
 nodemailer = require('nodemailer');
 Cart = require('./api/models/cart');
 Razorpay = require('razorpay');
+cors=require('cors');
 
 const User = require('./api/models/users');
 const passport = require('passport');
@@ -35,6 +36,11 @@ var flash = require('connect-flash');
 
 const app = express();
 app.set('view engine', 'ejs');
+
+app.use(cors({
+  methods:['GET','POST'],
+  credentials: true 
+}));
 
 
 app.use(express.static('public'));

@@ -70,14 +70,22 @@ addToCartBtn.addEventListener('click', async (e) => {
         productSize: productSize,
         productQuantity: productQuantity
     }
+  const config = {
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
   
   
 
-    // const response = await axios({
-    //     method: 'post',
-    //     url: '/cart',
-    //     data: productStats
-    // });
+    const response = await axios({
+        method: 'post',
+        url: '/cart',
+        data: productStats,
+        config:config
+    });
+  
 
 
 
