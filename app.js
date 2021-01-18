@@ -40,8 +40,6 @@ app.use(express.static('public'));
 
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
-app.use(flash());
-
 
 
 

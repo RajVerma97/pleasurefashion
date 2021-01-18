@@ -70,6 +70,8 @@ addToCartBtn.addEventListener('click', async (e) => {
         productSize: productSize,
         productQuantity: productQuantity
     }
+  
+  
 
     const response = await axios({
         method: 'post',
