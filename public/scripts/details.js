@@ -77,14 +77,14 @@ addToCartBtn.addEventListener('click', async (e) => {
   },
 };
   
-  
+  axios.post('/cart',productStats,config)
 
-    const response = await axios({
-        method: 'post',
-        url: '/cart',
-        data: productStats,
-        config:config
-    });
+//     const response = await axios({
+//         method: 'post',
+//         url: '/cart',
+//         data: productStats,
+//         config:config
+//     });
   
 
 
