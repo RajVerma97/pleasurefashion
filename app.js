@@ -1,40 +1,3 @@
-const port = process.env.PORT || 3000;
-const express = require('express');
-orderRoutes = require('./api/routes/orders');
-productRoutes = require('./api/routes/products');
-searchRoutes = require('./api/routes/search');
-tagRoutes = require('./api/routes/tags');
-commentRoutes = require('./api/routes/comments');
-cartRoutes = require('./api/routes/cart');
-wishlistRoutes = require('./api/routes/wishlist');
-paperWorkRoutes = require('./api/routes/paperwork');
-mongoose = require('mongoose');
-bodyParser = require('body-parser');
-methodOverride = require('method-override');
-flash = require('connect-flash');
-session = require('express-session');
-cookieParser=require('cookie-parser');
-seedDb = require('./seeds');
-morgan = require('morgan');
-axios = require('axios');
-dotenv = require('dotenv').config();
-nodemailer = require('nodemailer');
-Cart = require('./api/models/cart');
-Razorpay = require('razorpay');
-cors=require('cors');
-
-const User = require('./api/models/users');
-const passport = require('passport');
-const localStrategy = require('passport-local');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const checkCart = require('./api/middlewares/check-cart');
-var seeds = require('./seeds');
-var flash = require('connect-flash');
-const cookieSession = require("cookie-session");
-
-
-// seeds();
-
 const app = express();
 app.set('view engine', 'ejs');
 
@@ -49,6 +12,43 @@ app.use(function(req, res, next) {
       next();
   }
 });
+const port = process.env.PORT || 3000;
+const express = require('express');
+const orderRoutes = require('./api/routes/orders');
+const productRoutes = require('./api/routes/products');
+const searchRoutes = require('./api/routes/search');
+const tagRoutes = require('./api/routes/tags');
+const commentRoutes = require('./api/routes/comments');
+const cartRoutes = require('./api/routes/cart');
+const wishlistRoutes = require('./api/routes/wishlist');
+const paperWorkRoutes = require('./api/routes/paperwork');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const session = require('express-session');
+const cookieParser=require('cookie-parser');
+const seedDb = require('./seeds');
+const morgan = require('morgan');
+const axios = require('axios');
+const dotenv = require('dotenv').config();
+const nodemailer = require('nodemailer');
+const Cart = require('./api/models/cart');
+const Razorpay = require('razorpay');
+const cors=require('cors');
+
+const User = require('./api/models/users');
+const passport = require('passport');
+const localStrategy = require('passport-local');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const checkCart = require('./api/middlewares/check-cart');
+var seeds = require('./seeds');
+var flash = require('connect-flash');
+const cookieSession = require("cookie-session");
+
+
+// seeds();
+
+
 
 mongoose.set('useFindAndModify', false);
 mongoose.set('useNewUrlParser', true);
@@ -59,22 +59,23 @@ mongoose.set('useUnifiedTopology', true);
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(flash());
 
 
 // ==============
 //MiddleWares
 // ==============
-app.use(cookieParser('abcdefg'));
+// app.use(cookieParser('abcdefg'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-    session({
+// app.use(
+//     session({
 
-        secret: "Raj loves his friends",
-        resave: true,
-        saveUninitialized: false,
-    })
-);
+//         secret: "Raj loves his friends",
+//         resave: true,
+//         saveUninitialized: false,
+//     })
+// );
 // mongoose.set('useFindAndModify', false);
 
 
