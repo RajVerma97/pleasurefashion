@@ -30,6 +30,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const checkCart = require('./api/middlewares/check-cart');
 var seeds = require('./seeds');
 var flash = require('connect-flash');
+const cookieSession = require("cookie-session");
 
 
 // seeds();
@@ -79,22 +80,21 @@ app.use(
 
 
 
+app.use(cookieSession({
+  // milliseconds of a day
+  maxAge: 24*60*60*1000,
+  keys:['key1','key2']
+}));
 
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // ==============
 //Passport Config
 // ==============
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+
+
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -125,6 +125,16 @@ passport.use(new GoogleStrategy({
 
 
 ));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
 
 
 // passport.serializeUser(User.serializeUser());
