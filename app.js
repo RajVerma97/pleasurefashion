@@ -1,16 +1,20 @@
-const app = express();
+const app = require('express')();
 app.set('view engine', 'ejs');
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  } else {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    //intercepts OPTIONS method
+    if ('OPTIONS' === req.method) {
+      //respond with 200
+      res.send(200);
+    }
+    else {
+    //move on
       next();
-  }
+    }
 });
 const port = process.env.PORT || 3000;
 const express = require('express');
@@ -263,34 +267,34 @@ app.get("/order", (req, res) => {
     }
 });
 
-app.post("/capture/:paymentId", (req, res) => {
-    try {
-        return request(
-            {
-                method: "POST",
-                url: `https://${RAZOR_PAY_KEY_ID}:${RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
-                form: {
-                    amount: 2 * 100, // amount == Rs 10 // Same As Order amount
-                    currency: "INR",
-                },
-            },
-            async function (err, response, body) {
-                if (err) {
-                    return res.status(500).json({
-                        message: "Something Went Wrong",
-                    });
-                }
-                console.log("Status:", response.statusCode);
-                console.log("Headers:", JSON.stringify(response.headers));
-                console.log("Response:", body);
-                return res.status(200).json(body);
-            });
-    } catch (err) {
-        return res.status(500).json({
-            message: "Something Went Wrong",
-        });
-    }
-});
+// app.post("/capture/:paymentId", (req, res) => {
+//     try {
+//         return request(
+//             {
+//                 method: "POST",
+//                 url: `https://${RAZOR_PAY_KEY_ID}:${RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
+//                 form: {
+//                     amount: 2 * 100, // amount == Rs 10 // Same As Order amount
+//                     currency: "INR",
+//                 },
+//             },
+//             async function (err, response, body) {
+//                 if (err) {
+//                     return res.status(500).json({
+//                         message: "Something Went Wrong",
+//                     });
+//                 }
+//                 console.log("Status:", response.statusCode);
+//                 console.log("Headers:", JSON.stringify(response.headers));
+//                 console.log("Response:", body);
+//                 return res.status(200).json(body);
+//             });
+//     } catch (err) {
+//         return res.status(500).json({
+//             message: "Something Went Wrong",
+//         });
+//     }
+// });
 // app.post('/purchase', checkAuth, async (req, res, next) => {
 
 
