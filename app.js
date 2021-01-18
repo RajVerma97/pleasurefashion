@@ -28,6 +28,7 @@ const localStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const checkCart = require('./api/middlewares/check-cart');
 var seeds = require('./seeds');
+var flash = require('connect-flash');
 
 
 // seeds();
@@ -37,10 +38,8 @@ app.set('view engine', 'ejs');
 
 
 app.use(express.static('public'));
-
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
-
 
 
 // ==============
@@ -60,6 +59,9 @@ app.use(
 
 
 
+
+
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
