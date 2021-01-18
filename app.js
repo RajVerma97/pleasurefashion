@@ -48,6 +48,18 @@ app.use(express.static('public'));
 
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(
+    require("express-session")({
+
+        secret: "Raj loves his friends",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // ==============
 //Passport Config
@@ -90,22 +102,11 @@ passport.use(new GoogleStrategy({
 
 ));
 
-app.use(
-    require("express-session")({
 
-        secret: "Raj loves his friends",
-        resave: false,
-        saveUninitialized: false,
-    })
-);
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-passport.use(new localStrategy(User.authenticate()));
-passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+// passport.use(new localStrategy(User.authenticate()));
+// passport.use(User.createStrategy());
 
 
 
