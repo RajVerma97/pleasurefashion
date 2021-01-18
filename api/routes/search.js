@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
+const mongoose=require('mongoose');
 
 router.post('/', async (req, res, next) => {
     const query = req.body.query.toLowerCase().trim();
