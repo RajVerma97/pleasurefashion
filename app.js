@@ -49,6 +49,12 @@ app.use(function(req, res, next) {
   }
 });
 
+mongoose.set('useFindAndModify', false);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
@@ -68,6 +74,7 @@ app.use(
         saveUninitialized: false,
     })
 );
+// mongoose.set('useFindAndModify', false);
 
 
 

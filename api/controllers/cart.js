@@ -10,7 +10,7 @@ exports.cart_get_products = async (req, res) => {
         foundCart.products.forEach(p => {
             totalPrice += p.price*p.quantity;
         });
-        const response = await Cart.findOneAndUpdate({ owner: req.user }, { $set: { total: totalPrice } }).exec();
+        const response = await Cart.findOneAndUpdate({ owner: req.user }, { $set: { total: totalPrice } },).exec();
         const cart = await Cart.findOne({ owner: req.user }).populate('owner').exec();
         res.render('cart/cart', { cart: cart })
 
