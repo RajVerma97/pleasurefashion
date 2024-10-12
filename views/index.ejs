@@ -1,270 +1,453 @@
-<link rel="stylesheet" href="/stylesheets/index.css">
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<link rel="stylesheet" href="/stylesheets/index.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+/>
 
-<%-include('partials/header')%>
-    <%-include('partials/searchForm')%>
+<%-include('partials/header')%> <%-include('partials/searchForm')%> <%if(success
+&& success.length>0){%>
+<p style="color: green"><%=success%></p>
 
-        <%if(success && success.length>0){%>
-            <p style="color:green">
-                <%=success%>
-            </p>
+<%}%>
 
-            <%}%>
+<div class="hero">
+  <div
+    class="hero__text"
+    data-aos="fade-right"
+    data-aos-delay="300"
+    data-aos-once="true"
+    data-aos-duration="400"
+  >
+    <h1 class="hero__title"><span class="hero__stay">stay</span> trendy!</h1>
+    <p class="hero__leading">choose handpicked clothes for the womens</p>
+  </div>
+  <div
+    class="hero__image"
+    data-aos="zoom-in"
+    data-aos-delay="700"
+    data-aos-duration="700"
+    data-aos-once="true"
+  ></div>
+</div>
 
+<main class="main">
+  <section class="showcase">
+    <h1 class="showcase__title">casuals</h1>
 
+    <div
+      class="carousel"
+      data-flickity='{ "pageDots":false,"cellAlign": "left", "contain": true,"freeScroll":true }'
+    >
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/shirt"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-aos-once="true"
+            data-aos-duration="200"
+            src="images/shirt.png"
+            alt="shirt"
+        /></a>
+        <p class="carousel__title">shirt</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/tshirt"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-once="true"
+            data-aos-duration="300"
+            src="images/tshirt.jfif"
+            alt="tshirt"
+        /></a>
+        <p class="carousel__title">tshirt</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/pants"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-once="true"
+            data-aos-duration="400"
+            src="images/pants.jfif"
+            alt="pants"
+        /></a>
+        <p class="carousel__title">pants</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/skirt"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="400"
+            data-aos-once="true"
+            data-aos-duration="500"
+            src="images/skirt.jfif"
+            alt="skirt"
+        /></a>
+        <p class="carousel__title">skirts</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/shorts"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="500"
+            data-aos-once="true"
+            data-aos-duration="600"
+            src="images/shorts.jfif"
+            alt="shorts"
+        /></a>
+        <p class="carousel__title">shorts</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/dresses"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-aos-once="true"
+            data-aos-duration="700"
+            src="images/dresses.jfif"
+            alt="dresses"
+        /></a>
+        <p class="carousel__title">dresses</p>
+      </div>
+    </div>
+  </section>
+  <section class="showcase">
+    <h1 class="showcase__title">ethnic</h1>
 
-                <div class="hero">
-                    <div class="hero__text"  data-aos="fade-right" data-aos-delay="300" data-aos-once="true" data-aos-duration="400" >
-                        <h1 class="hero__title"><span class="hero__stay">stay</span> trendy!</h1>
-                        <p class="hero__leading">choose handpicked clothes for the womens
-                        </p>  
-                    </div>
-                    <div class="hero__image" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="700" data-aos-once="true">
+    <div
+      class="carousel"
+      data-flickity='{ "pageDots":false,"cellAlign": "left", "contain": true,"freeScroll":true }'
+    >
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/saree"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-aos-once="true"
+            data-aos-duration="200"
+            src="images/saree.jfif"
+            alt="saree"
+        /></a>
+        <p class="carousel__title">saree</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/suit"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-once="true"
+            data-aos-duration="300"
+            src="images/suit.jfif"
+            alt="suit"
+        /></a>
+        <p class="carousel__title">suit</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/lehenga"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-once="true"
+            data-aos-duration="400"
+            src="images/lehenga.jfif"
+            alt="lehenga"
+        /></a>
+        <p class="carousel__title">lehenga</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/kurti"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="400"
+            data-aos-once="true"
+            data-aos-duration="500"
+            src="images/kurti.jpg"
+            alt="kurti"
+        /></a>
+        <p class="carousel__title">kurti</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/dupatta"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="500"
+            data-aos-once="true"
+            data-aos-duration="600"
+            src="images/dupatta.jfif"
+            alt="dupatta"
+        /></a>
+        <p class="carousel__title">dupatta</p>
+      </div>
+      <div class="carousel__cell">
+        <a class="carousel__link" href="/tags/palazzo"
+          ><img
+            class="carousel__image"
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-aos-once="true"
+            data-aos-duration="700"
+            src="images/palazzo.jfif"
+            alt="palazzo"
+        /></a>
+        <p class="carousel__title">palazzo</p>
+      </div>
+    </div>
+  </section>
 
-                    </div> 
-                </div>
+  <section class="showcase">
+    <h1 class="showcase__title">categories</h1>
+    <div class="categories__container">
+      <a href="/tags/sportswear" class="category__link">
+        <img
+          src="images/sportswear.jfif"
+          alt="sportswear"
+          class="category__image"
+          data-aos="fade-right"
+          data-aos-delay="200"
+          data-aos-once="true"
+          data-aos-duration="500"
+        />
+        <p class="category__title">sportswear</p>
+      </a>
+      <a href="/tags/korean" class="category__link">
+        <img
+          src="images/korean.jpg"
+          alt="korean"
+          class="category__image"
+          data-aos="fade-left"
+          data-aos-delay="500"
+          data-aos-once="true"
+          data-aos-duration="800"
+        />
+        <p class="category__title">korean</p>
+      </a>
+      <a href="/tags/merch" class="category__link">
+        <img
+          src="images/merch.jpg"
+          alt="merch"
+          class="category__image"
+          data-aos="fade-right"
+          data-aos-delay="200"
+          data-aos-once="true"
+          data-aos-duration="500"
+        />
+        <p class="category__title">merch</p>
+      </a>
+      <a href="/tags/handbag" class="category__link">
+        <img
+          src="images/handbag-3.jpg"
+          alt="handbag"
+          class="category__image"
+          data-aos="fade-left"
+          data-aos-delay="500"
+          data-aos-once="true"
+          data-aos-duration="800"
+        />
+        <p class="category__title">handbag</p>
+      </a>
+      <a href="/tags/winterwear" class="category__link">
+        <img
+          src="images/winterwear.jfif"
+          alt="winterwear"
+          class="category__image"
+          data-aos="fade-right"
+          data-aos-delay="200"
+          data-aos-once="true"
+          data-aos-duration="500"
+        />
+        <p class="category__title">winterwear</p>
+      </a>
+      <a href="/tags/shoes" class="category__link">
+        <img
+          src="images/swimsuit.jfif"
+          alt="swimsuits"
+          class="category__image"
+          data-aos="fade-left"
+          data-aos-delay="500"
+          data-aos-once="true"
+          data-aos-duration="800"
+        />
+        <p class="category__title">swimsuits</p>
+      </a>
+    </div>
+  </section>
 
-                <main class="main">
-                    <section class="showcase" >
-                        <h1 class="showcase__title">casuals</h1>
+  <section class="brands">
+    <h1 class="showcase__title">brands</h1>
+    <div
+      class="brands__carousel"
+      data-flickity='{ "wrapAround":true,"autoPlay":800,"pageDots":false,"cellAlign": "left", "contain": true,"freeScroll":true }'
+    >
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/fila.png" alt="fila" class="brand__image" />
+        </a>
+      </div>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/h&m.png" alt="h&m" class="brand__image" />
+        </a>
+      </div>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/puma.png" alt="puma" class="brand__image" />
+        </a>
+      </div>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/nike.jpeg" alt="nike" class="brand__image" />
+        </a>
+      </div>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/varsace.jpeg" alt="varsace" class="brand__image" />
+        </a>
+      </div>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/gcci.jpeg" alt="gucci" class="brand__image" />
+        </a>
+      </div>
 
-                        <div class="carousel"
-                            data-flickity='{ "pageDots":false,"cellAlign": "left", "contain": true,"freeScroll":true }'>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/shirt"><img class="carousel__image" data-aos="fade-up" data-aos-delay="100" data-aos-once="true" data-aos-duration="200"
-                                        src="images/shirt.png" alt="shirt"></a>
-                                <p class="carousel__title">shirt</p>
- 
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/tshirt"><img class="carousel__image" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" data-aos-duration="300"
-                                        src="images/tshirt.jfif" alt="tshirt"></a>
-                                <p class="carousel__title">tshirt</p>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/wrogn.png" alt="wrogn" class="brand__image" />
+        </a>
+      </div>
 
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/pants"><img class="carousel__image" data-aos="fade-up" data-aos-delay="300" data-aos-once="true" data-aos-duration="400"
-                                         src="images/pants.jfif" alt="pants"></a>
-                                <p class="carousel__title">pants</p>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/polo.png" alt="polo" class="brand__image" />
+        </a>
+      </div>
 
-                            </div>   
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/skirt"><img class="carousel__image" data-aos="fade-up" data-aos-delay="400" data-aos-once="true" data-aos-duration="500"
-                                        src="images/skirt.jfif" alt="skirt"></a>
-                                <p class="carousel__title">skirts</p>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/adidas.png" alt="adidas" class="brand__image" />
+        </a>
+      </div>
 
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/shorts"><img class="carousel__image" data-aos="fade-up" data-aos-delay="500" data-aos-once="true" data-aos-duration="600"
-                                        src="images/shorts.jfif" alt="shorts"></a>
-                                <p class="carousel__title">shorts</p>
+      <div class="brand__cell">
+        <a href="#" class="brand__link">
+          <img src="images/gap.png" alt="gap" class="brand__image" />
+        </a>
+      </div>
+    </div>
+  </section>
 
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/dresses"><img class="carousel__image" data-aos="fade-up" data-aos-delay="600" data-aos-once="true" data-aos-duration="700"
-                                        src="images/dresses.jfif" alt="dresses"></a>
-                                <p class="carousel__title">dresses</p>
+  <section class="poster">
+    <h1 class="poster__title showcase__title">winter collection</h1>
+    <div class="poster__container">
+      <a href="#" class="container__item1">
+        <img
+          class="poster__img"
+          src="images/winter-1.jfif"
+          alt="item1"
+          data-aos="flip-left"
+          data-aos-delay="100"
+          data-aos-once="true"
+          data-aos-duration="200"
+        />
+      </a>
+      <a href="#" class="container__item2">
+        <img
+          class="poster__img"
+          src="images/winter-2.jpg"
+          alt="item2"
+          data-aos="flip-left"
+          data-aos-delay="200"
+          data-aos-once="true"
+          data-aos-duration="300"
+        />
+      </a>
+      <a href="#" class="container__item3">
+        <img
+          class="poster__img"
+          src="images/winter-3.jfif"
+          alt="item3"
+          data-aos="flip-left"
+          data-aos-delay="300"
+          data-aos-once="true"
+          data-aos-duration="400"
+        />
+      </a>
+      <a href="#" class="container__item4">
+        <img
+          class="poster__img"
+          src="images/winter-4.jfif"
+          alt="item2"
+          data-aos="flip-left"
+          data-aos-delay="400"
+          data-aos-once="true"
+          data-aos-duration="500"
+        />
+      </a>
+    </div>
+  </section>
 
-                            </div>
+  <section class="poster">
+    <h1 class="poster__title showcase__title">Tshirt</h1>
+    <div class="poster__container">
+      <a href="#" class="container__item1">
+        <img
+          class="poster__img"
+          src="/images/tshirt-1.jfif"
+          alt="item1"
+          data-aos="flip-left"
+          data-aos-delay="100"
+          data-aos-once="true"
+          data-aos-duration="200"
+        />
+      </a>
+      <a href="#" class="container__item2">
+        <img
+          class="poster__img"
+          src="/images/tshirt-2.jfif"
+          alt="item2"
+          data-aos="flip-left"
+          data-aos-delay="200"
+          data-aos-once="true"
+          data-aos-duration="300"
+        />
+      </a>
+      <a href="#" class="container__item3">
+        <img
+          class="poster__img"
+          src="/images/tshirt-3.jfif"
+          alt="item3"
+          data-aos="flip-left"
+          data-aos-delay="300"
+          data-aos-once="true"
+          data-aos-duration="400"
+        />
+      </a>
+      <a href="#" class="container__item4">
+        <img
+          class="poster__img"
+          src="/images/tshirt-4.jfif"
+          alt="item2"
+          data-aos="flip-left"
+          data-aos-delay="400"
+          data-aos-once="true"
+          data-aos-duration="500"
+        />
+      </a>
+    </div>
+  </section>
 
-
-
-
-                        </div>
-                    </section>
-                    <section class="showcase">
-                        <h1 class="showcase__title">ethnic</h1>
-
-                        <div class="carousel"
-                            data-flickity='{ "pageDots":false,"cellAlign": "left", "contain": true,"freeScroll":true }'>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/saree"><img class="carousel__image"  data-aos="fade-up" data-aos-delay="100" data-aos-once="true" data-aos-duration="200"
-                                        src="images/saree.jfif" alt="saree"></a>
-                                <p class="carousel__title">saree</p>
-
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/suit"><img class="carousel__image"  data-aos="fade-up" data-aos-delay="200" data-aos-once="true" data-aos-duration="300"
-                                        src="images/suit.jfif" alt="suit"></a>
-                                <p class="carousel__title">suit</p>
-
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/lehenga"><img class="carousel__image"  data-aos="fade-up" data-aos-delay="300" data-aos-once="true" data-aos-duration="400"
-                                        src="images/lehenga.jfif" alt="lehenga"></a>
-                                <p class="carousel__title">lehenga</p>
-
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/kurti"><img class="carousel__image"  data-aos="fade-up" data-aos-delay="400" data-aos-once="true" data-aos-duration="500"
-                                        src="images/kurti.jpg" alt="kurti"></a>
-                                <p class="carousel__title">kurti</p>
-
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/dupatta"><img class="carousel__image"  data-aos="fade-up" data-aos-delay="500" data-aos-once="true" data-aos-duration="600"
-                                        src="images/dupatta.jfif" alt="dupatta"></a>
-                                <p class="carousel__title">dupatta</p>
-
-                            </div>
-                            <div class="carousel__cell">
-                                <a class="carousel__link" href="/tags/palazzo"><img class="carousel__image"  data-aos="fade-up" data-aos-delay="600" data-aos-once="true" data-aos-duration="700"
-                                        src="images/palazzo.jfif" alt="palazzo"></a>
-                                <p class="carousel__title">palazzo</p>
-
-                            </div>
-
-
-
-                        </div>
-                    </section>
-
-                    
-                                <section class="showcase">
-                        <h1 class="showcase__title">categories</h1>
-                        <div class="categories__container">
-                            <a href="/tags/sportswear" class="category__link">
-                                <img src="images/sportswear.jfif" alt="sportswear" class="category__image" data-aos="fade-right" data-aos-delay="200" data-aos-once="true" data-aos-duration="500"> 
-                                <p class="category__title">sportswear</p>
-                            </a>
-                            <a href="/tags/korean" class="category__link">
-                                <img src="images/korean.jpg" alt="korean" class="category__image" data-aos="fade-left" data-aos-delay="500" data-aos-once="true" data-aos-duration="800">
-                                <p class="category__title">korean</p>
-                            </a>
-                            <a href="/tags/merch" class="category__link">
-                                <img src="images/merch.jpg" alt="merch" class="category__image" data-aos="fade-right" data-aos-delay="200" data-aos-once="true" data-aos-duration="500">
-                                <p class="category__title">merch</p>
-                            </a>
-                            <a href="/tags/handbag" class="category__link">
-                                <img src="images/handbag-3.jpg" alt="handbag" class="category__image" data-aos="fade-left" data-aos-delay="500" data-aos-once="true" data-aos-duration="800">
-                                <p class="category__title">handbag</p>
-                            </a>
-                            <a href="/tags/winterwear" class="category__link">
-                                <img src="images/winterwear.jfif" alt="winterwear" class="category__image" data-aos="fade-right" data-aos-delay="200" data-aos-once="true" data-aos-duration="500">
-                                <p class="category__title">winterwear</p>
-                            </a>
-                            <a href="/tags/shoes" class="category__link">
-                                <img src="images/swimsuit.jfif" alt="swimsuits" class="category__image" data-aos="fade-left" data-aos-delay="500" data-aos-once="true" data-aos-duration="800">
-                                <p class="category__title">swimsuits</p>
-                            </a>
-                        </div>
-                    </section>
-
-                    <section class="brands">
-                        <h1 class="showcase__title">brands</h1>
-                        <div class="brands__carousel"
-                            data-flickity='{ "wrapAround":true,"autoPlay":800,"pageDots":false,"cellAlign": "left", "contain": true,"freeScroll":true }'>
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/fila.png" alt="fila" class="brand__image">
-
-                                </a>
-                            </div>
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/h&m.png" alt="h&m" class="brand__image">
-
-                                </a>
-                            </div>
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/puma.png" alt="puma" class="brand__image">
-
-                                </a>
-                            </div>
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/nike.jpeg" alt="nike" class="brand__image">
-
-                                </a>
-                            </div>
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/varsace.jpeg" alt="varsace" class="brand__image">
-
-                                </a>
-                            </div>
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/gcci.jpeg" alt="gucci" class="brand__image">
-
-                                </a>
-                            </div>
-
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/wrogn.png" alt="wrogn" class="brand__image">
-
-                                </a>
-                            </div>
-
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/polo.png" alt="polo" class="brand__image">
-
-                                </a>
-                            </div>
-
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/adidas.png" alt="adidas" class="brand__image">
-
-                                </a>
-                            </div>
-
-                            <div class="brand__cell">
-                                <a href="#" class="brand__link">
-                                    <img src="images/gap.png" alt="gap" class="brand__image">
-
-                                </a>
-                            </div>
-
-
-
-
-                        </div>
-                    </section>
-                  
-
-                    <section class="poster">
-                        <h1 class="poster__title showcase__title">winter collection</h1>
-                        <div class="poster__container">
-                            <a href="#" class="container__item1">
-                                <img class="poster__img" src="images/winter-1.jfif" alt="item1" data-aos="flip-left"  data-aos-delay="100" data-aos-once="true" data-aos-duration="200">
-                            </a>
-                            <a href="#" class="container__item2">
-                                <img class="poster__img" src="images/winter-2.jpg" alt="item2"  data-aos="flip-left"  data-aos-delay="200" data-aos-once="true" data-aos-duration="300">
-                            </a>
-                            <a href="#" class="container__item3">
-                                <img class="poster__img" src="images/winter-3.jfif" alt="item3" data-aos="flip-left"  data-aos-delay="300" data-aos-once="true" data-aos-duration="400">
-                            </a>
-                            <a href="#" class="container__item4">
-                                <img class="poster__img" src="images/winter-4.jfif" alt="item2"  data-aos="flip-left"  data-aos-delay="400" data-aos-once="true" data-aos-duration="500">
-                            </a>
-                        </div>
-                    </section>
-
-
-
-                    <section class="poster">
-                        <h1 class="poster__title showcase__title">Tshirt</h1>
-                        <div class="poster__container">
-                            <a href="#" class="container__item1">
-                                <img class="poster__img" src="/images/tshirt-1.jfif" alt="item1" data-aos="flip-left"  data-aos-delay="100" data-aos-once="true" data-aos-duration="200">
-                            </a>
-                            <a href="#" class="container__item2">
-                                <img class="poster__img" src="/images/tshirt-2.jfif" alt="item2" data-aos="flip-left"  data-aos-delay="200" data-aos-once="true" data-aos-duration="300">
-                            </a>
-                            <a href="#" class="container__item3">
-                                <img class="poster__img" src="/images/tshirt-3.jfif" alt="item3" data-aos="flip-left"  data-aos-delay="300" data-aos-once="true" data-aos-duration="400">
-                            </a>
-                            <a href="#" class="container__item4">
-                                <img class="poster__img" src="/images/tshirt-4.jfif" alt="item2" data-aos="flip-left"  data-aos-delay="400" data-aos-once="true" data-aos-duration="500">
-                            </a>
-                        </div>
-                    </section>
-
-                    <!-- <section class="showoff">
+  <!-- <section class="showoff">
                         <a href="#" class="showoff__image"
                            style="background-image: url(/images/poster-waves.jpg);"></a>
                     </section>
@@ -284,9 +467,7 @@
                         <a href="#" class="showoff__image" 
                            style="background-image: url(/images/poster-skirt.jpg);"></a></a>
                     </section> -->
+</main>
 
-                </main>
-
-
-                <%-include('partials/footer')%>
-                    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<%-include('partials/footer')%>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
