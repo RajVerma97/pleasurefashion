@@ -1,157 +1,159 @@
 .hero {
-	text-align: center;
-	margin: 2em auto;
+  text-align: center;
+  margin: 2em auto;
 }
 .hero__text {
-	width: 90%;
-	text-align: center;
-	margin: 0 auto;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .hero__title {
-	font-size: 3rem;
-	text-transform: capitalize;
-	font-weight: 800;
+  font-size: 3rem;
+  text-transform: capitalize;
+  font-weight: 800;
 
-	color: hotpink;
-	margin-bottom: 0.2em;
+  color: hotpink;
+  margin-bottom: 0.2em;
 }
 .hero__stay {
-	color: rgb(46, 45, 45);
-	font-weight: 700;
+  color: rgb(46, 45, 45);
+  font-weight: 700;
 }
 
 .hero__leading {
-	color: gray;
-	font-size: 1.5rem;
-	font-weight: 300;
-	padding: 0 2em;
-	margin-bottom: 0.5em;
+  color: gray;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding: 0 2em;
+  margin-bottom: 0.5em;
 }
 
 .hero__image {
-	margin-top: 2em;
-	width: 90%;
-	height: 500px;
-	background: url('../images/hero-2.jpg');
-	background-position: top;
-	border-radius: 16px;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	position: relative;
-	z-index: -3;
-	overflow: hidden;
+  margin-top: 2em;
+  width: 90%;
+  height: 500px;
+  background: url("../images/hero-2.jpg");
+  background-position: top;
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  z-index: -3;
+  overflow: hidden;
 }
 
 .showcase__title {
-	font-size: 2rem;
-	font-weight: 800;
-	color: rgb(11, 11, 65);
-	margin-bottom: 0.6em;
-	text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgb(11, 11, 65);
+  margin-bottom: 0.6em;
+  text-transform: capitalize;
 }
 
 .carousel__cell {
-	width: 150px;
-	height: 250px;
-	margin-right: 1em;
+  width: 150px;
+  height: 250px;
+  margin-right: 1em;
 }
 
 .carousel__image {
-	display: block;
-	max-width: 100%;
-	height: 85%;
-	border-radius: 8px;
+  display: block;
+  max-width: 100%;
+  height: 85%;
+  border-radius: 8px;
 }
 .carousel__title {
-	font-size: 1.2rem;
-	font-weight: 300;
-	text-align: center;
-	color: gray;
-	margin-top: 0.5em;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-align: center;
+  color: gray;
+  margin-top: 0.5em;
 }
 
 .flickity-button {
-	display: none;
+  display: none;
 }
 .flickity-dots {
-	display: none;
+  display: none;
 }
 
 main {
-	display: grid;
-	grid-gap: 3em;
-	padding-top: 2em;
-	width: min(90%, 1100px);
+  display: grid;
+  grid-gap: 3em;
+  padding-top: 2em;
+  width: min(90%, 1100px);
+}
+.categories__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3em;
 }
 
-.categories__container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(120px, 2fr));
-	grid-auto-rows: 260px;
-	grid-gap: 1.5em;
-}
-.category__link {
-	padding: 1em;
+.category__image {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 .category__image {
-	border-radius: 8px;
-	width: 100%;
-	height: 90%;
-	display: block;
+  width: 100%; /* Makes images responsive */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Ensures the image occupies the full space */
 }
 .category__title {
-	text-align: center;
-	font-size: 1.1rem;
-	font-weight: 400;
-	color: gray;
-	margin-top: 0.7em;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: gray;
+  margin-top: 0.7em;
 }
 .brands__carousel {
-	margin-top: 2em;
-	margin-bottom: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .brand__cell {
-	width: 3.7em;
-	height: 3.7em;
-	margin-right: 2.5em;
-	text-align: center;
+  width: 3.7em;
+  height: 3.7em;
+  margin-right: 2.5em;
+  text-align: center;
 }
 .brand__image {
-	display: block;
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .poster__title {
-	text-transform: capitalize;
-	margin-bottom: 1.5em;
+  text-transform: capitalize;
+  margin-bottom: 1.5em;
 }
 .poster__container {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 3em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3em;
 }
 .poster__img {
-	display: block;
-	border-radius: 8px;
-	width: 100%;
-	height: auto;
+  display: block;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
 }
 
 .showoff {
-	width: 100%;
-	max-width: 90vw;
+  width: 100%;
+  max-width: 40vw;
+  margin: 0 auto;
 }
 .showoff__image {
-	display: block;
-	width: 100%;
-	height: 63vh;
-	border-radius: 8px;
-	background-position: top;
-	background-repeat: no-repeat;
-	background-size: cover;
-	padding: 2em;
+  display: block;
+  width: 100%;
+  height: 10vh;
+  border-radius: 8px;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2em;
 }
