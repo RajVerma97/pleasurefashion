@@ -1,76 +1,59 @@
 <%-include('../partials/header')%>
-    <link rel="stylesheet" href="/stylesheets/cart/cart.css">
+<link rel="stylesheet" href="/stylesheets/cart/cart.css" />
 
+<div class="order__wrapper">
+  <%-include('../partials/backArrow')%>
 
-    <div class="order__wrapper">
-        <%-include('../partials/backArrow')%>
+  <h1 class="cart__title">My Cart</h1>
 
-
-            <h1 class="cart__title">My Cart</h1>
-
-                <%if(cart.products.length>0){%>
-                    <div class="orders">
-                    <div class="order__header">
-                    
-                        <span class="wrapper__total">Total:<span class="total__amount">₹<%=cart.total%></span></span>
-                        <button total-price='<%=cart.total%>' class="checkout__btn">Checkout</button>
-                    
-                    </div>
-
-                    <%cart.products.forEach(function(product){%>
-
-                        <div class="order"  data-aos="fade-up"  data-aos-once="true" data-aos-delay="200"
-                            data-aos-duration="400">
-                            <a href="/products/<%=product._id%>">
-                            <img class="order__image" src="<%=product.image%>">
-                        </a>
-
-                            <div class="order__info">
-                                <h4 class="order__name">
-                                    <%=product.name%>
-
-                                </h4>
-                                <span class="order__size">
-                                    <%=product.size%>
-                                </span>
-                                <div class="order__footer">
-                                    <span class="order__price">₹<%=product.price%></span>
-                                    <span class="order__quantity">
-                                        <%=product.quantity%>x
-                                    </span>
-                                </div>
-
-
-                                <form action="/cart/<%=product._id%>?_method=DELETE" method="POST">
-                                    <button class="order__delete__btn">Delete</button>
-
-                                </form>
-
-                            </div>
-
-
-
-                        </div>
-
-                        <%})%>
-
-                            <%}else{%>
-                                <div class="not__found">
-                                    <h4 class="not__found__text">cart is empty</h4>
-                                    <div class="not__found__img"></div>
-                                
-                                
-                                </div>
-
-
-                                <%}%>
-
-
-            </div>
-
-
+  <%if(cart.products.length>0){%>
+  <div class="orders">
+    <div class="order__header">
+      <span class="wrapper__total"
+        >Total:<span class="total__amount">₹<%=cart.total%></span></span
+      >
+      <button total-price="<%=cart.total%>" class="checkout__btn">
+        Checkout
+      </button>
     </div>
 
-    <script src="/scripts/cart.js"></script>
+    <%cart.products.forEach(function(product){%>
 
-    <%-include('../partials/footer')%>
+    <div
+      class="order"
+      data-aos="fade-up"
+      data-aos-once="true"
+      data-aos-delay="200"
+      data-aos-duration="400"
+    >
+      <a href="/products/<%=product._id%>">
+        <img class="order__image" src="<%=product.image%>" />
+      </a>
+
+      <div class="order__info">
+        <h4 class="order__name"><%=product.name%></h4>
+        <span class="order__size"> <%=product.size%> </span>
+        <div class="order__footer">
+          <span class="order__price">₹<%=product.price%></span>
+          <span class="order__quantity"> <%=product.quantity%>x </span>
+        </div>
+
+        <form action="/cart/<%=product._id%>?_method=DELETE" method="POST">
+          <button class="order__delete__btn">Delete</button>
+        </form>
+      </div>
+    </div>
+
+    <%})%> <%}else{%>
+    <div class="not__found">
+      <h4 class="not__found__text">cart is empty</h4>
+      <div class="not__found__img"></div>
+    </div>
+
+    <%}%>
+  </div>
+</div>
+
+<script src="/scripts/cart.js"></script>
+
+<%-include('../partials/footer')%>
