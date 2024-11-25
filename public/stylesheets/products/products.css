@@ -33,13 +33,22 @@
   background-position: top;
 }
 
-.wrapper {
-  padding: 1em;
+.my-wrapper {
+  padding: 3em;
+}
+
+.p__wrapper {
+  width: 100%;
+}
+
+.p__container {
+  display: block;
+  padding: 3em;
 }
 
 .p__image {
-  width: 188px;
-  height: 250px;
+  /* width: 188px;
+  height: 250px; */
   display: block;
   border-radius: 8px;
   border: 1px solid red;

@@ -6,123 +6,131 @@
 <p style="color: red"><%=error%></p>
 
 <%}%>
-<div class="wrapper">
+<div class="my-wrapper">
   <%-include('../partials/backArrow')%>
 
-  <div class="p__image">
-    <img
-      src="<%=product.image%>"
-      alt=""
-      data-aos="zoom-in"
-      data-aos-once="true"
-      data-aos-delay="200"
-      data-aos-duration="200"
-    />
-  </div>
-  <div
-    class="info"
-    data-aos="fade-left"
-    data-aos-once="true"
-    data-aos-delay="300"
-    data-aos-duration="500"
-  >
-    <section class="details">
-      <h2 class="p__name"><%=product.name%></h2>
-      <p class="p__price">₹<%=product.price%></p>
-    </section>
-    <%if(product.units>=1){%>
-    <p class="p__stock">in stock</p>
+  <div class="p__wrapper">
+    <div class="p__container">
+      <div class="p__image">
+        <img
+          src="<%=product.image%>"
+          alt=""
+          data-aos="zoom-in"
+          data-aos-once="true"
+          data-aos-delay="200"
+          data-aos-duration="200"
+        />
+      </div>
+      <div
+        class="info"
+        data-aos="fade-left"
+        data-aos-once="true"
+        data-aos-delay="300"
+        data-aos-duration="500"
+      >
+        <section class="details">
+          <h2 class="p__name"><%=product.name%></h2>
+          <p class="p__price">₹<%=product.price%></p>
+        </section>
+        <%if(product.units>=1){%>
+        <p class="p__stock">in stock</p>
 
-    <%}else{%>
-    <p style="color: red" class="p__stock">sold out</p>
+        <%}else{%>
+        <p style="color: red" class="p__stock">sold out</p>
 
-    <%}%>
+        <%}%>
 
-    <section class="size">
-      <%product.sizes.forEach(function(size){%>
-      <span size="<%=size%>" class="size__btn"> <%=size%> </span>
-      <%})%>
-    </section>
+        <section class="size">
+          <%product.sizes.forEach(function(size){%>
+          <span size="<%=size%>" class="size__btn"> <%=size%> </span>
+          <%})%>
+        </section>
 
-    <select class="cart__quantity" name="quantity" id="quantity">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-    <button product-id="<%=product._id%>" class="cart__btn">Add to cart</button>
+        <select class="cart__quantity" name="quantity" id="quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <button product-id="<%=product._id%>" class="cart__btn">
+          Add to cart
+        </button>
 
-    <button
-      product-id="<%=product._id%>"
-      style="display: none"
-      class="buy__btn"
-    >
-      buy this
-    </button>
-
-    <section class="desc">
-      <h2 class="desc__title">description</h2>
-      <p class="desc__leading">
-        When choosing a dress,you want to find something that will make you feel
-        cool and also looking good.
-      </p>
-    </section>
-  </div>
-</div>
-<div class="comments__container">
-  <section class="comments">
-    <h1 class="comments__title">comments</h1>
-    <form
-      action="/products/<%=product._id%>/comments"
-      class="comment__form"
-      method="POST"
-    >
-      <img
-        class="comment__image comment__image--main"
-        src="<%= currentUser && currentUser.profileImage ? currentUser.profileImage : '/default-image.jpg' %>"
-        alt=""
-      />
-
-      <input
-        name="comment"
-        type="text"
-        class="comment__input"
-        placeholder="add a coment..."
-      />
-    </form>
-
-    <%if(product.comments.length>0){%>
-    <%product.comments.forEach(function(comment){%>
-    <div class="comment">
-      <img
-        class="comment__image"
-        src="<%=comment.author.profileImage%>"
-        alt=""
-      />
-
-      <div class="comment__info">
-        <h4 class="comment__name">
-          <%=comment.author.username%>.<span class="comment__time"
-            >7 hours ago</span
-          >
-        </h4>
-        <p class="comment__text"><%=comment.text%></p>
-
-        <i
-          class="like__btn fas fa-thumbs-up"
-          action="like"
-          commentid="<%=comment._id%>"
+        <button
+          product-id="<%=product._id%>"
+          style="display: none"
+          class="buy__btn"
         >
-          <%=comment.likes%>
-        </i>
+          buy this
+        </button>
+
+        <section class="desc">
+          <h2 class="desc__title">description</h2>
+          <p class="desc__leading">
+            When choosing a dress,you want to find something that will make you
+            feel cool and also looking good.
+          </p>
+        </section>
       </div>
     </div>
-    <hr />
+    <div class="comments__container">
+      <section class="comments">
+        <h1 class="comments__title">comments</h1>
 
-    <% })%> <% }else{%>
-    <p>No comments</p>
+        <%if(currentUser){%>
 
-    <% }%>
-  </section>
+        <form
+          action="/products/<%=product._id%>/comments"
+          class="comment__form"
+          method="POST"
+        >
+          <img
+            class="comment__image comment__image--main"
+            src="<%= currentUser && currentUser.profileImage ? currentUser.profileImage : '/default-image.jpg' %>"
+            alt=""
+          />
+
+          <input
+            name="comment"
+            type="text"
+            class="comment__input"
+            placeholder="add a coment..."
+          />
+        </form>
+        <% } %> <%if(product.comments.length>0){%>
+        <%product.comments.forEach(function(comment){%>
+        <div class="comment">
+          <img
+            class="comment__image"
+            src="<%=comment.author.profileImage%>"
+            alt=""
+          />
+
+          <div class="comment__info">
+            <h4 class="comment__name">
+              <%=comment.author.username%>.<span class="comment__time"
+                >7 hours ago</span
+              >
+            </h4>
+            <p class="comment__text"><%=comment.text%></p>
+
+            <i
+              class="like__btn fas fa-thumbs-up"
+              action="like"
+              commentid="<%=comment._id%>"
+            >
+              <%=comment.likes%>
+            </i>
+          </div>
+        </div>
+        <hr />
+
+        <% })%> <% }else{%>
+        <p>No comments</p>
+
+        <% }%>
+      </section>
+    </div>
+  </div>
 </div>
 
 <script src="/scripts/details.js"></script>
