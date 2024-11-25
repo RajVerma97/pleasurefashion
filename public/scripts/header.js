@@ -6,8 +6,6 @@ var submenuToggler = document.getElementById('submenu-toogler')
 var overlay = document.querySelector('.overlay');
 
 
-
-
 sidebarOpenBtn.addEventListener('click', () => {
     sidebar.classList.add('active');
     document.body.style.position = 'fixed';

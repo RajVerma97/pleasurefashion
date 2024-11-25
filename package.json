@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start:prod": "ENV_FILE=.env.production node app.js",
+    "dev": "ENV_FILE=.env.local node app.js"
   },
   "author": "",
   "license": "ISC",

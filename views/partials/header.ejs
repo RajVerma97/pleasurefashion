@@ -11,7 +11,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
     <link rel="stylesheet" href="/stylesheets/partials/footer.css" />
     <link rel="stylesheet" href="/stylesheets/partials/header.css" />
     <link rel="stylesheet" href="/stylesheets/main.css" />
@@ -20,10 +19,11 @@
   <body>
     <header class="header">
       <i id="sidebar-open" class="toogle fas fa-bars"></i>
-      <a href="/index" class="brand__logo">pleasure</a>
-      <a class="cart__container" href="/cart"
-        ><i class="cart fas fa-shopping-cart"></i
-      ></a>
+      <a href="/" class="brand__logo">pleasure</a>
+
+      <a class="cart__container" href="#" onclick="handleClick('/cart', event)">
+        <i class="cart fas fa-shopping-cart"></i>
+      </a>
 
       <div class="overlay">
         <div class="close__container">
@@ -35,15 +35,18 @@
         <div class="sidebar__profile">
           <img
             class="profile__image"
-            src="images/user-circle-solid.svg"
-            alt=""
+            src="<%= currentUser && currentUser.profileImage ? currentUser.profileImage : '/images/user-circle-solid.svg' %>"
+            alt="<%= currentUser ? currentUser.username : 'Guest' %>"
           />
-          <h4 class="profile__username">guest</h4>
+
+          <h4 class="profile__username">
+            <%= currentUser ? currentUser.username : 'Guest' %>
+          </h4>
         </div>
         <ul class="sidebar__list">
           <%if(!currentUser){%>
           <li class="sidebar__item">
-            <a href="/" class="sidebar__link">sign in</a>
+            <a href="/users/signup" class="sidebar__link">sign in</a>
           </li>
 
           <%}else{%>
@@ -59,10 +62,18 @@
           <%}%>
 
           <li class="sidebar__item">
-            <a href="/orders" class="sidebar__link">my orders</a>
+            <a
+              href="/orders"
+              class="sidebar__link"
+              onclick="handleClick('/orders', event)"
+              >my orders</a
+            >
           </li>
           <li class="sidebar__item">
-            <a href="/wishlist" class="sidebar__link"
+            <a
+              href="/wishlist"
+              class="sidebar__link"
+              onclick="handleClick('/wishlist', event)"
               >wishlist<i class="sidebar__link__icon fas fa-heart"></i
             ></a>
           </li>
@@ -104,13 +115,32 @@
         </ul>
       </aside>
     </header>
+
     <script>
-      var currentUserString = "<%-JSON.stringify(currentUser)%>";
-      var currentUser = JSON.parse(currentUserString);
-      var profileImageDisplay = document.querySelector(".profile__image");
-      var usernameDisplay = document.querySelector(".profile__username");
-      profileImageDisplay.setAttribute("src", currentUser.profileImage);
-      usernameDisplay.textContent = currentUser.username;
+      async function handleClick(href, event) {
+        event.preventDefault();
+
+        try {
+          const response = await fetch(href, {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+            credentials: "same-origin",
+          });
+
+          if (!response.ok) {
+            const error = await response.json();
+            console.log(error);
+            alert(error.message);
+            throw new Error(error.message || "User not logged in");
+          }
+
+          window.location.href = href;
+        } catch (error) {
+          console.log(error);
+        }
+      }
     </script>
   </body>
 </html>

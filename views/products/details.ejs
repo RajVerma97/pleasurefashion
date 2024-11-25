@@ -51,7 +51,13 @@
     </select>
     <button product-id="<%=product._id%>" class="cart__btn">Add to cart</button>
 
-    <button product-id="<%=product._id%>" class="buy__btn">buy this</button>
+    <button
+      product-id="<%=product._id%>"
+      style="display: none"
+      class="buy__btn"
+    >
+      buy this
+    </button>
 
     <section class="desc">
       <h2 class="desc__title">description</h2>
@@ -72,9 +78,10 @@
     >
       <img
         class="comment__image comment__image--main"
-        src="<%=currentUser.profileImage%>"
+        src="<%= currentUser && currentUser.profileImage ? currentUser.profileImage : '/default-image.jpg' %>"
         alt=""
       />
+
       <input
         name="comment"
         type="text"
@@ -107,8 +114,6 @@
         >
           <%=comment.likes%>
         </i>
-
-        <!-- <a href="#" class="comment__reply">reply</a> -->
       </div>
     </div>
     <hr />
@@ -119,5 +124,6 @@
     <% }%>
   </section>
 </div>
+
 <script src="/scripts/details.js"></script>
 <%-include('../partials/footer')%>
